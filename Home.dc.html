@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/styles.css">
+  <script src="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; text-wrap: pretty; background: var(--color-bg); color: var(--color-text); }
+    a { color: var(--color-accent); text-underline-offset: 3px; }
+    a:hover { color: var(--color-accent-600); }
+    ::selection { background: var(--color-accent-100); color: var(--color-accent-900); }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  </style>
+</helmet>
+
+<dc-import name="Nav" current="home" hint-size="100%,72px"></dc-import>
+
+<main>
+  <!-- HERO -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 8vw, 104px) clamp(20px, 5vw, 72px) clamp(40px, 6vw, 72px);">
+    <div style="display: grid; gap: clamp(32px, 5vw, 72px); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center;">
+      <div style="animation: riseIn 0.7s ease both;">
+        <span style="display: block; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-700); font-feature-settings: 'tnum' 1; margin-bottom: 24px;">Est. 2018 · Corner of Vine &amp; Halsey</span>
+        <h1 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(46px, 6.4vw, 88px); line-height: 1.04; letter-spacing: -0.015em; margin: 0 0 28px; margin-left: -0.04em;">Butter, flour, <br>and a little patience.</h1>
+        <p style="font-size: 17px; line-height: 1.65; max-width: 46ch; color: color-mix(in srgb, var(--color-text) 80%, transparent); margin: 0 0 32px;">A small neighbourhood bakery turning out laminated pastry, slow-proofed bread and proper coffee since dawn. Everything is made by hand, in-house, the same morning you eat it.</p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="Menu.dc.html" class="btn btn-primary" style="text-decoration: none;">View the menu
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="Contact.dc.html" class="btn btn-ghost" style="text-decoration: none;">Reserve a table</a>
+        </div>
+      </div>
+      <figure class="plate" style="margin: 0; animation: riseIn 0.9s ease both;">
+        <div style="aspect-ratio: 4 / 5; display: grid; place-items: center; background: radial-gradient(130% 110% at 25% 12%, var(--color-accent-100), transparent 55%), radial-gradient(120% 120% at 85% 95%, var(--color-neutral-200), transparent 52%), var(--color-surface);">
+          <div style="text-align: center; color: color-mix(in srgb, var(--color-text) 42%, transparent);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <div style="font-family: var(--font-heading); font-size: 16px; margin-top: 12px; letter-spacing: 0.02em;">The morning counter</div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <div style="max-width: 1160px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 72px);"><hr class="hr" style="margin: 0;"></div>
+
+  <!-- FACTS -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 72px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 32px;">
+      <sc-for list="{{ facts }}" as="fact" hint-placeholder-count="4">
+        <div>
+          <p style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(34px, 3.4vw, 46px); line-height: 1.1; margin: 0; font-feature-settings: 'tnum' 1;">{{ fact.num }}</p>
+          <p style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 62%, transparent); margin: 12px 0 0; line-height: 1.5;">{{ fact.label }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="max-width: 1160px; margin: 0 auto; padding-inline: clamp(20px, 5vw, 72px);"><hr class="hr" style="margin: 0;"></div>
+
+  <!-- CRAFT COLUMNS -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 72px);">
+    <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 12px;">What we make</span>
+    <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 40px; max-width: 20ch;">Three things, done properly.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(28px, 4vw, 56px);">
+      <sc-for list="{{ crafts }}" as="craft" hint-placeholder-count="3">
+        <div>
+          <span style="display: block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-feature-settings: 'tnum' 1;">{{ craft.no }}</span>
+          <h3 style="font-family: var(--font-heading); font-weight: 400; font-size: 26px; line-height: 1.2; margin: 14px 0 12px;">{{ craft.title }}</h3>
+          <p style="font-size: 15.5px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 78%, transparent); text-align: justify; hyphens: auto; margin: 0;">{{ craft.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SIGNATURES -->
+  <section style="background: color-mix(in srgb, var(--color-surface) 55%, var(--color-bg)); border-block: 1px solid var(--color-divider);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 72px);">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+        <div>
+          <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 12px;">From the counter</span>
+          <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; margin: 0;">Today's signatures</h2>
+        </div>
+        <a href="Menu.dc.html" class="btn btn-secondary" style="text-decoration: none;">See full menu</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+        <sc-for list="{{ signatures }}" as="item" hint-placeholder-count="4">
+          <div class="card">
+            <div class="card-kicker">{{ item.tag }}</div>
+            <div class="card-title">{{ item.name }}</div>
+            <p class="card-body">{{ item.desc }}</p>
+            <div class="card-meta" style="justify-content: space-between; margin-top: 6px;">
+              <span style="font-feature-settings: 'tnum' 1;">{{ item.price }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 72px);">
+    <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 12px;">The room &amp; the work</span>
+    <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; margin: 0 0 40px;">A look inside</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <sc-for list="{{ gallery }}" as="shot" hint-placeholder-count="6">
+        <figure class="plate" style="margin: 0;">
+          <div style="aspect-ratio: 1 / 1; display: grid; place-items: end start; padding: 16px; background: radial-gradient(130% 110% at 25% 12%, var(--color-accent-100), transparent 55%), radial-gradient(120% 120% at 85% 95%, var(--color-neutral-200), transparent 52%), var(--color-surface);">
+            <span style="font-family: var(--font-heading); font-size: 15px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">{{ shot }}</span>
+          </div>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 72px);">
+    <hr class="hr" style="margin: 0 0 clamp(40px, 6vw, 72px);">
+    <figure style="margin: 0; max-width: 40ch;">
+      <blockquote style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.28; letter-spacing: -0.005em; margin: 0;">"The croissants have a shatter you can hear across the room. We reordered the second we sat down."</blockquote>
+      <figcaption style="font-size: 15px; line-height: 1.6; color: color-mix(in srgb, var(--color-text) 68%, transparent); margin-top: 22px;">— The City Table, neighbourhood review</figcaption>
+    </figure>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 72px) clamp(64px, 9vw, 112px);">
+    <hr class="hr" style="margin: 0 0 clamp(40px, 6vw, 72px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(28px, 4vw, 56px); align-items: center;">
+      <div>
+        <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; margin: 0 0 16px;">Come in warm.</h2>
+        <p style="font-size: 16px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 78%, transparent); max-width: 42ch; margin: 0 0 24px;">Open seven days from six in the morning. Tables are first-come before ten, and reservable after. Pastry sells out — the early ones eat best.</p>
+        <a href="Contact.dc.html" class="btn btn-primary" style="text-decoration: none;">Reserve a table</a>
+      </div>
+      <div>
+        <sc-for list="{{ hours }}" as="row" hint-placeholder-count="3">
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--color-divider); font-size: 15px;">
+            <span>{{ row.days }}</span>
+            <span style="color: color-mix(in srgb, var(--color-text) 70%, transparent); font-feature-settings: 'tnum' 1;">{{ row.time }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top: 1px solid var(--color-divider);">
+  <div style="max-width: 1160px; margin: 0 auto; padding: clamp(44px, 6vw, 72px) clamp(20px, 5vw, 72px); display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+    <div>
+      <div class="nav-brand" style="font-size: 24px; letter-spacing: 0.14em;">CAFÉ</div>
+      <p style="font-size: 13px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 66%, transparent); margin: 12px 0 0; max-width: 30ch;">A neighbourhood bakery &amp; patisserie. Handmade, every morning, since 2018.</p>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Visit</div>
+      <p style="font-size: 14px; line-height: 1.8; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 0;">128 Vine Street<br>Halsey Quarter<br>Open daily · 6am–5pm</p>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Pages</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+        <a href="Home.dc.html" style="color: inherit; text-decoration: none;">Home</a>
+        <a href="Menu.dc.html" style="color: inherit; text-decoration: none;">Menu</a>
+        <a href="About.dc.html" style="color: inherit; text-decoration: none;">About</a>
+        <a href="Contact.dc.html" style="color: inherit; text-decoration: none;">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Say hello</div>
+      <p style="font-size: 14px; line-height: 1.8; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 0;">hello@cafe.example<br>(555) 018-2240</p>
+    </div>
+  </div>
+  <div style="border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 72px); font-size: 12px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">© 2026 CAFÉ · Baked from scratch</div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      facts: [
+        { num: '6am', label: 'Ovens on, doors open' },
+        { num: '40+', label: 'Pastries laminated daily' },
+        { num: '3', label: 'House coffee blends' },
+        { num: '0', label: 'Shortcuts taken' },
+      ],
+      crafts: [
+        { no: '01', title: 'Viennoiserie', body: 'Croissants and their cousins, folded through three days of cold rest so the butter shatters instead of chews. We laminate by hand each night and bake in waves through the morning.' },
+        { no: '02', title: 'Patisserie', body: 'Tarts, canelés and small cakes built on French method and seasonal fruit. Precise, unfussy, and made in numbers small enough that nothing sits under glass for long.' },
+        { no: '03', title: 'Coffee', body: 'A rotating single origin and two house blends, pulled on a lever machine and poured for filter. Milk from a farm an hour north; the flat white is the one to beat.' },
+      ],
+      signatures: [
+        { tag: 'Viennoiserie', name: 'Butter croissant', desc: 'Three-day laminated, baked dark and audible.', price: '4.50' },
+        { tag: 'Viennoiserie', name: 'Pain au chocolat', desc: 'Two batons of 66% couverture, folded in.', price: '4.90' },
+        { tag: 'Patisserie', name: 'Bordeaux canelé', desc: 'Beeswax mould, mahogany crust, custard centre.', price: '3.75' },
+        { tag: 'Bakery', name: 'Kouign-amann', desc: 'Caramelised, salted, faintly dangerous.', price: '5.20' },
+      ],
+      gallery: ['Lamination', 'The counter', 'First bake', 'Canelé tray', 'The window seat', 'Espresso, poured'],
+      hours: [
+        { days: 'Monday – Friday', time: '6:00 – 17:00' },
+        { days: 'Saturday', time: '7:00 – 17:00' },
+        { days: 'Sunday', time: '7:00 – 15:00' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

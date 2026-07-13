@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/styles.css">
+  <script src="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; text-wrap: pretty; background: var(--color-bg); color: var(--color-text); }
+    a { color: var(--color-accent); text-underline-offset: 3px; }
+    a:hover { color: var(--color-accent-600); }
+    ::selection { background: var(--color-accent-100); color: var(--color-accent-900); }
+    @keyframes fadeMenu { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  </style>
+</helmet>
+
+<dc-import name="Nav" current="menu" hint-size="100%,72px"></dc-import>
+
+<main>
+  <!-- HEADER -->
+  <section style="max-width: 1160px; margin: 0 auto; padding: clamp(44px, 7vw, 88px) clamp(20px, 5vw, 72px) clamp(28px, 4vw, 48px);">
+    <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 16px;">Baked fresh, sold same-day</span>
+    <h1 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(44px, 6vw, 82px); line-height: 1.04; letter-spacing: -0.015em; margin: 0; margin-left: -0.04em;">The menu</h1>
+    <p style="font-size: 16px; line-height: 1.7; max-width: 52ch; color: color-mix(in srgb, var(--color-text) 78%, transparent); margin: 24px 0 0;">Prices in dollars. Everything is made in-house; the pastry list shifts a little with the season and sells out most afternoons.</p>
+  </section>
+
+  <!-- TABS -->
+  <div style="position: sticky; top: 72px; z-index: 20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-block: 1px solid var(--color-divider);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px); display: flex; gap: 6px; overflow-x: auto;">
+      <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+        <button type="button" onClick="{{ tab.select }}" aria-current="{{ tab.current }}" style="{{ tab.style }}">{{ tab.name }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ACTIVE CATEGORY -->
+  <section style="max-width: 900px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 72px) clamp(56px, 8vw, 96px);">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 12px;">
+      <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; margin: 0;">{{ activeName }}</h2>
+      <span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 55%, transparent);">{{ activeNote }}</span>
+    </div>
+    <hr class="hr" style="margin: 0 0 20px;">
+    <div key="{{ activeName }}" style="animation: fadeMenu 0.35s ease; display: flex; flex-direction: column;">
+      <sc-for list="{{ activeItems }}" as="item" hint-placeholder-count="6">
+        <div style="padding: 22px 0; border-bottom: 1px solid var(--color-divider);">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: var(--font-heading); font-weight: 400; font-size: 22px; line-height: 1.2;">{{ item.name }}</span>
+            <span style="flex: 1; border-bottom: 1px dotted color-mix(in srgb, var(--color-text) 30%, transparent); transform: translateY(-5px);"></span>
+            <span style="font-family: var(--font-heading); font-size: 20px; font-feature-settings: 'tnum' 1; color: var(--color-accent-700);">{{ item.price }}</span>
+          </div>
+          <p style="font-size: 14.5px; line-height: 1.6; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 8px 0 0; max-width: 58ch;">{{ item.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size: 13px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 58%, transparent); margin: 28px 0 0;">Allergens on request. We fold real butter into everything laminated — please ask before assuming otherwise.</p>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: color-mix(in srgb, var(--color-surface) 55%, var(--color-bg)); border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: clamp(44px, 6vw, 72px) clamp(20px, 5vw, 72px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div>
+        <h2 style="font-family: var(--font-heading); font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.15; margin: 0 0 8px;">Want a table for the morning rush?</h2>
+        <p style="font-size: 15px; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 0;">Reservations open from 10am; before that it's first-come.</p>
+      </div>
+      <a href="Contact.dc.html" class="btn btn-primary" style="text-decoration: none; white-space: nowrap;">Reserve a table</a>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top: 1px solid var(--color-divider);">
+  <div style="max-width: 1160px; margin: 0 auto; padding: clamp(44px, 6vw, 72px) clamp(20px, 5vw, 72px); display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+    <div>
+      <div class="nav-brand" style="font-size: 24px; letter-spacing: 0.14em;">CAFÉ</div>
+      <p style="font-size: 13px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 66%, transparent); margin: 12px 0 0; max-width: 30ch;">A neighbourhood bakery &amp; patisserie. Handmade, every morning, since 2018.</p>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Visit</div>
+      <p style="font-size: 14px; line-height: 1.8; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 0;">128 Vine Street<br>Halsey Quarter<br>Open daily · 6am–5pm</p>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Pages</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+        <a href="Home.dc.html" style="color: inherit; text-decoration: none;">Home</a>
+        <a href="Menu.dc.html" style="color: inherit; text-decoration: none;">Menu</a>
+        <a href="About.dc.html" style="color: inherit; text-decoration: none;">About</a>
+        <a href="Contact.dc.html" style="color: inherit; text-decoration: none;">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Say hello</div>
+      <p style="font-size: 14px; line-height: 1.8; color: color-mix(in srgb, var(--color-text) 72%, transparent); margin: 0;">hello@cafe.example<br>(555) 018-2240</p>
+    </div>
+  </div>
+  <div style="border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 72px); font-size: 12px; color: color-mix(in srgb, var(--color-text) 55%, transparent);">© 2026 CAFÉ · Baked from scratch</div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: 0 };
+
+  renderVals() {
+    const cats = [
+      {
+        name: 'Viennoiserie', note: 'Baked in waves from 6am',
+        items: [
+          { name: 'Butter croissant', price: '4.50', desc: 'Three-day laminated, baked dark and audible. The one to judge us by.' },
+          { name: 'Pain au chocolat', price: '4.90', desc: 'Two batons of 66% couverture folded into the same dough.' },
+          { name: 'Almond croissant', price: '5.40', desc: 'Yesterday\u2019s croissant, soaked, filled with frangipane, re-baked.' },
+          { name: 'Kouign-amann', price: '5.20', desc: 'Caramelised, salted, faintly dangerous. Best within the hour.' },
+          { name: 'Morning bun', price: '4.80', desc: 'Croissant dough, orange zest and cinnamon sugar, spiralled.' },
+        ],
+      },
+      {
+        name: 'Patisserie & Cakes', note: 'Made in small numbers',
+        items: [
+          { name: 'Bordeaux canelé', price: '3.75', desc: 'Beeswax mould, mahogany crust, soft vanilla custard centre.' },
+          { name: 'Seasonal fruit tart', price: '6.50', desc: 'Sablé shell, crème pâtissière, whatever the market gave us.' },
+          { name: 'Paris-Brest', price: '6.90', desc: 'Choux ring, praline cream, toasted hazelnut. A weekend fixture.' },
+          { name: 'Lemon madeleine (x3)', price: '4.20', desc: 'Baked to order Fri\u2013Sun; hump and all, warm from the shell.' },
+        ],
+      },
+      {
+        name: 'Bread', note: 'Slow-proofed overnight',
+        items: [
+          { name: 'Country sourdough', price: '7.50', desc: '48-hour ferment, dark bake, open crumb. Whole loaf.' },
+          { name: 'Baguette de tradition', price: '3.90', desc: 'Flour, water, salt, time. Milled from a single French wheat.' },
+          { name: 'Seeded rye', price: '8.20', desc: 'Caraway, sunflower, flax; dense and long-keeping.' },
+          { name: 'Focaccia slab', price: '5.00', desc: 'Olive oil, rosemary, flaked salt. Sold by the square.' },
+        ],
+      },
+      {
+        name: 'Coffee & Tea', note: 'Lever machine, filter, pot',
+        items: [
+          { name: 'Espresso', price: '3.20', desc: 'House blend or the rotating single origin. Ask what\u2019s on.' },
+          { name: 'Flat white', price: '4.40', desc: 'Milk from a farm an hour north. The one to beat.' },
+          { name: 'Filter, batch', price: '4.00', desc: 'Brewed by the litre through the morning; free refill before 9.' },
+          { name: 'Pot of loose-leaf', price: '4.60', desc: 'Assam, jasmine green, or a house herbal. Serves two.' },
+          { name: 'Hot chocolate', price: '4.80', desc: '66% couverture melted into steamed milk. Not for the timid.' },
+        ],
+      },
+    ];
+    const active = this.state.active;
+    const tabs = cats.map((c, i) => ({
+      name: c.name,
+      current: i === active ? 'true' : null,
+      select: () => this.setState({ active: i }),
+      style: [
+        'font-family: var(--font-body)',
+        'font-size: 12px',
+        'letter-spacing: 0.12em',
+        'text-transform: uppercase',
+        'white-space: nowrap',
+        'cursor: pointer',
+        'background: transparent',
+        'border: 0',
+        'padding: 18px 14px',
+        'border-bottom: 2px solid ' + (i === active ? 'var(--color-accent)' : 'transparent'),
+        'color: ' + (i === active ? 'var(--color-accent-700)' : 'color-mix(in srgb, var(--color-text) 60%, transparent)'),
+      ].join('; '),
+    }));
+    return {
+      tabs,
+      activeName: cats[active].name,
+      activeNote: cats[active].note,
+      activeItems: cats[active].items,
+    };
+  }
+}
+</script>
+</body>
+</html>

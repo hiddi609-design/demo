@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/styles.css">
+  <script src="_ds/classical-ea7045c3-3fd4-4a2c-a698-eb02a0cdbd89/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; }
+    @keyframes navDrawerIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  </style>
+</helmet>
+<nav class="nav" style="position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--color-bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding-inline: clamp(20px, 5vw, 72px); padding-block: 14px;">
+  <a href="Home.dc.html" class="nav-brand" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; line-height: 1;">
+    <span style="font-size: 22px; letter-spacing: 0.14em;">CAFÉ</span>
+    <span style="font-family: var(--font-body); font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--color-accent-700); margin-top: 5px;">Bakery &amp; Patisserie</span>
+  </a>
+
+  <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; align-items: center; gap: clamp(18px, 2.6vw, 36px);">
+      <sc-for list="{{ links }}" as="link" hint-placeholder-count="4">
+        <a href="{{ link.href }}" aria-current="{{ link.current }}" style="text-decoration: none; color: inherit; font-family: var(--font-body); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;" style-hover="color: var(--color-accent);">{{ link.label }}</a>
+      </sc-for>
+      <a href="Contact.dc.html" class="btn btn-primary" style="text-decoration: none; white-space: nowrap;">Reserve a table</a>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+    <button type="button" class="btn btn-secondary btn-icon" aria-label="Open menu" onClick="{{ toggle }}">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+    </button>
+  </sc-if>
+</nav>
+
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div style="position: fixed; inset: 0; z-index: 60; background: var(--color-bg); display: flex; flex-direction: column; animation: navDrawerIn 0.28s ease;">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px clamp(20px, 5vw, 72px); border-bottom: 1px solid var(--color-divider);">
+      <span class="nav-brand" style="font-size: 22px; letter-spacing: 0.14em;">CAFÉ</span>
+      <button type="button" class="btn btn-secondary btn-icon" aria-label="Close menu" onClick="{{ close }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 0 clamp(20px, 5vw, 72px);">
+      <sc-for list="{{ links }}" as="link" hint-placeholder-count="4">
+        <a href="{{ link.href }}" aria-current="{{ link.current }}" style="text-decoration: none; color: inherit; font-family: var(--font-heading); font-weight: 400; font-size: clamp(38px, 12vw, 60px); line-height: 1.05; letter-spacing: -0.01em;">{{ link.label }}</a>
+      </sc-for>
+    </div>
+    <div style="padding: clamp(24px, 6vw, 48px) clamp(20px, 5vw, 72px); border-top: 1px solid var(--color-divider);">
+      <a href="Contact.dc.html" class="btn btn-primary btn-block" style="text-decoration: none;">Reserve a table</a>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;72px&quot;},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;menu&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, w: (typeof window !== 'undefined' ? window.innerWidth : 1200) };
+
+  componentDidMount() {
+    this._onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onR);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onR);
+  }
+
+  renderVals() {
+    const cur = this.props.current || 'home';
+    const mobile = this.state.w < 860;
+    const links = [
+      { label: 'Home', href: 'Home.dc.html', key: 'home' },
+      { label: 'Menu', href: 'Menu.dc.html', key: 'menu' },
+      { label: 'About', href: 'About.dc.html', key: 'about' },
+      { label: 'Contact', href: 'Contact.dc.html', key: 'contact' },
+    ].map(l => ({ ...l, current: l.key === cur ? 'page' : null }));
+    return {
+      links,
+      mobile,
+      desktop: !mobile,
+      open: mobile && this.state.open,
+      toggle: () => this.setState(s => ({ open: !s.open })),
+      close: () => this.setState({ open: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>
